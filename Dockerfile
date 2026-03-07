@@ -4,4 +4,4 @@ WORKDIR /app
 
 COPY . /app
 
-CMD ["run","--enable-api","--cors","*","--port","10000","--model","models"]
+CMD ["rasa","run","--enable-api","--cors","*","--port","10000","--model","models"]
