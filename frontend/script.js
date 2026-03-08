@@ -1,5 +1,5 @@
 // Configuration
-const RASA_SERVER_URL = 'http://localhost:5005/webhooks/rest/webhook';
+const RASA_SERVER_URL = '/webhooks/rest/webhook';
 let sessionId = 'user_' + Date.now() + '_' + Math.random().toString(36).substring(7);
 let conversationStarted = false;
 let currentQuote = '';
