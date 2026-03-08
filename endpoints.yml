@@ -1,18 +1,9 @@
 # This file contains the different endpoints your bot can use.
 
-# Server which runs your custom actions.
+# Action endpoint - MUST match the port in start_actions.sh
 action_endpoint:
-  url: "https://quotes-recommendation-chatbot-using-nlp-srj7.onrender.com"
+  url: "http://localhost:5055/webhook"  # Port 5055, NOT 10000
 
-# Tracker store which is used to store the conversations.
-# By default the conversations are stored in memory.
+# Tracker store
 tracker_store:
-    type: inmemory  # Changed to inmemory to avoid Redis
-
-# Remove or comment out the event broker section entirely!
-# event_broker:
-#   type: pika
-#   url: localhost
-#   username: guest
-#   password: guest
-#   queue: rasa_core_events
+    type: inmemory
