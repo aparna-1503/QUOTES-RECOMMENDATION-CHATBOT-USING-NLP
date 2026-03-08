@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Start Action Server in background
-rasa run actions --port 5055 &
+
+rasa run actions --actions actions --port 5055 &
 ACTION_PID=$!
 
-# Start Rasa Server in foreground
-rasa run --enable-api --cors "*" --port 10000
 
-# If Rasa stops, kill action server
+rasa run --enable-api --cors "*" --port ${PORT:-10000}
+
+
 kill $ACTION_PID
