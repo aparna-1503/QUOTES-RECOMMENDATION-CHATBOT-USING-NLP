@@ -5,7 +5,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
-# ========== QUOTE MANAGER ==========
+
 class QuoteManager:
     """Quote management system"""
     
@@ -14,18 +14,37 @@ class QuoteManager:
         self.quotes_by_category = {}
         self.load_quotes(quotes_path)
         
-    def load_quotes(self, path):
-        """Load and index quotes"""
+   def load_quotes(self, path="actions/quotes.json"):
+    """Load and index quotes"""
+    quotes = []
+    
+   
+    possible_paths = [
+        "actions/quotes.json",  
+        "quotes.json",          
+        "/opt/render/project/src/actions/quotes.json",  # Render absolute path
+    ]
+    
+    for try_path in possible_paths:
         try:
-            with open(path, 'r', encoding='utf-8') as f:
+            with open(try_path, 'r', encoding='utf-8') as f:
                 quotes = json.load(f)
+                print(f"✅ Loaded {len(quotes)} quotes from: {try_path}")
+                break
         except FileNotFoundError:
-            # Try alternative path
-            try:
-                with open("actions/quotes.json", 'r', encoding='utf-8') as f:
-                    quotes = json.load(f)
-            except:
-                quotes = self.get_fallback_quotes()
+            continue
+        except Exception as e:
+            print(f"⚠️ Error loading from {try_path}: {e}")
+            continue
+    
+    if not quotes:
+        print("⚠️ Using fallback quotes")
+        quotes = self.get_fallback_quotes()
+    
+
+    seen = set()
+    for q in quotes:
+    
         
         # Deduplicate
         seen = set()
@@ -122,7 +141,6 @@ class QuoteManager:
         
         return random.choice(candidates) if candidates else random.choice(self.quotes)
 
-# ========== SENTIMENT ANALYSIS ==========
 def get_sentiment(text):
     """Simple sentiment analysis"""
     positive_words = {
@@ -146,10 +164,10 @@ def get_sentiment(text):
         return "negative"
     return "neutral"
 
-# ========== INITIALIZE ==========
+
 quote_manager = QuoteManager()
 
-# ========== CUSTOM ACTIONS ==========
+
 class ActionSendQuote(Action):
     """Send quote based on intent"""
     
