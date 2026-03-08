@@ -4,4 +4,4 @@ WORKDIR /app
 
 COPY . /app
 
-CMD rasa train && rasa run --enable-api --cors "*" --port 10000
+CMD bash -c "rasa train && rasa run --enable-api --cors '*' --port 5005 & python3 -m http.server 10000 --directory frontend"
