@@ -8,6 +8,7 @@ pipeline:
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer
+    max_features: 1000
     analyzer: char_wb
     min_ngram: 1
     max_ngram: 4
