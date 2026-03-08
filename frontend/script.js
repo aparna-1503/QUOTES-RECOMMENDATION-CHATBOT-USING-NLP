@@ -1,5 +1,5 @@
 // Configuration
-const RASA_SERVER_URL = 'https://quotes-recommendation-chatbot-using-nlp-wzll.onrender.com:5005/webhooks/rest/webhook';
+const RASA_SERVER_URL = 'https://quotes-recommendation-chatbot-using-nlp-wzll.onrender.com/webhooks/rest/webhook';
 let sessionId = 'user_' + Date.now() + '_' + Math.random().toString(36).substring(7);
 let conversationStarted = false;
 let currentQuote = '';
