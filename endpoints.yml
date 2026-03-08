@@ -2,7 +2,7 @@
 
 # Server which runs your custom actions.
 action_endpoint:
-  url: "http://localhost:5055/webhook"
+  url: "https://quotes-recommendation-chatbot-using-nlp-srj7.onrender.com"
 
 # Tracker store which is used to store the conversations.
 # By default the conversations are stored in memory.
