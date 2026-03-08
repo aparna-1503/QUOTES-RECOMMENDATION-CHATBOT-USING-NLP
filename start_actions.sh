@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-rasa run actions --actions actions --port 5055 &
+rasa run actions --actions actions --port 5005 &
 ACTION_PID=$!
 
 
