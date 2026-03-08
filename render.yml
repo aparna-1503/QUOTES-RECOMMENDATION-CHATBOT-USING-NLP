@@ -7,8 +7,10 @@ services:
       python -m spacy download en_core_web_md
       rasa train
     startCommand: |
-      chmod +x start_actions.sh
-      ./start_actions.sh
+      # Start both services on Render
+      rasa run actions --actions actions --port 5055 &
+      sleep 5
+      rasa run --enable-api --cors "*" --port 10000
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.18
