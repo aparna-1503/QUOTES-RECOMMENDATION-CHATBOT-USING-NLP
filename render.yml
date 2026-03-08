@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: quotebot
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python -m spacy download en_core_web_md
+      rasa train
+    startCommand: ./start.sh
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.18
